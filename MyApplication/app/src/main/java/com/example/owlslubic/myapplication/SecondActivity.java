@@ -1,6 +1,7 @@
 package com.example.owlslubic.myapplication;
 
 import android.content.Intent;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -20,17 +21,19 @@ public class SecondActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageview);
         textView = (TextView) findViewById(R.id.second_text);
 
-//
-//        Intent intent = getIntent();
-//
-//        if(intent.getBooleanExtra("status", false)){
-//            imageView.setImageResource(R.drawable.ic_yes_wifi);
-//            textView.setText("Connection Established");
-//
-//        }else{
-//            imageView.setImageResource(R.drawable.ic_no_wifi);
-//            textView.setText("No Connection Found...");
-//        }
+
+        Intent intent = getIntent();
+
+        if(intent.getBooleanExtra("status", false)){
+            imageView.setImageResource(R.drawable.ic_yes_wifi);
+            textView.setText("Connection Established");
+
+            NotificationManagerCompat.from(SecondActivity.this).cancel(1138);
+
+        }else{
+            imageView.setImageResource(R.drawable.ic_no_wifi);
+            textView.setText("No Connection Found...");
+        }
 
 
     }

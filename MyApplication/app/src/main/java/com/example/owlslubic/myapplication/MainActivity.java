@@ -25,28 +25,34 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = conMng.getActiveNetworkInfo();
 
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1138, intent, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1138, intent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.ic_lil_dude)
                 .setContentTitle("Network Status")
-                .setContentText("Checking for service...")
-                .setContentIntent(pendingIntent);
-
+                .setContentText("Checking for service...");
+//                .setContentIntent(pendingIntent);
+//
         if (networkInfo != null && networkInfo.isConnected()) {
             NotificationCompat.BigPictureStyle pictureStyle = new NotificationCompat.BigPictureStyle();
-            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_delete));
+            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_input_add));
             builder.setStyle(pictureStyle);
-            builder.setAutoCancel(true);//so that it goes away if it's true
+           // builder.setAutoCancel(true);//so that it goes away if it's true
+            intent.putExtra("status", Boolean.TRUE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1138, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
 
 
-           // intent.putExtra("status", Boolean.TRUE);
 
         } else {
             NotificationCompat.BigPictureStyle pictureStyle = new NotificationCompat.BigPictureStyle();
-            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.ic_no_wifi));
+            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_delete));
             builder.setStyle(pictureStyle);
-          // intent.putExtra("status", Boolean.FALSE);
+            intent.putExtra("status", Boolean.FALSE);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1139, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+
         }
 
         NotificationManagerCompat.from(MainActivity.this).notify(1138, builder.build());
