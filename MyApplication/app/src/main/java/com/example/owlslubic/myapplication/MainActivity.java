@@ -30,22 +30,23 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.ic_lil_dude)
                 .setContentTitle("Network Status")
-                .setContentText("Checking for service............")
+                .setContentText("Checking for service...")
                 .setContentIntent(pendingIntent);
 
-        if(networkInfo != null && networkInfo.isConnected()){
+        if (networkInfo != null && networkInfo.isConnected()) {
             NotificationCompat.BigPictureStyle pictureStyle = new NotificationCompat.BigPictureStyle();
-            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(),android.R.drawable.ic_delete));
+            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_delete));
             builder.setStyle(pictureStyle);
+            builder.setAutoCancel(true);//so that it goes away if it's true
 
-            intent.putExtra("status", Boolean.TRUE);
-        }
-        else{
+
+           // intent.putExtra("status", Boolean.TRUE);
+
+        } else {
             NotificationCompat.BigPictureStyle pictureStyle = new NotificationCompat.BigPictureStyle();
-            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.ic_no_wifi));
+            pictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.ic_no_wifi));
             builder.setStyle(pictureStyle);
-
-            intent.putExtra("status", Boolean.FALSE);
+          // intent.putExtra("status", Boolean.FALSE);
         }
 
         NotificationManagerCompat.from(MainActivity.this).notify(1138, builder.build());

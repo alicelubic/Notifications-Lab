@@ -20,18 +20,19 @@ public class SecondActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageview);
         textView = (TextView) findViewById(R.id.second_text);
 
-
-        Intent intent = getIntent();
-
-        if(intent.getBooleanExtra("status", false)){
-            imageView.setImageResource(R.drawable.ic_yes_wifi);
-            textView.setText("Connection Established");
-        }else{
-            imageView.setImageResource(R.drawable.ic_no_wifi);
-            textView.setText("No Connection Found...");
-        }
+//
+//        Intent intent = getIntent();
+//
+//        if(intent.getBooleanExtra("status", false)){
+//            imageView.setImageResource(R.drawable.ic_yes_wifi);
+//            textView.setText("Connection Established");
+//
+//        }else{
+//            imageView.setImageResource(R.drawable.ic_no_wifi);
+//            textView.setText("No Connection Found...");
+//        }
 
 
     }
-    
+
 }
